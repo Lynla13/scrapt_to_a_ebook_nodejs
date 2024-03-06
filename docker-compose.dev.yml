@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  api:
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/app
+      - /usr/src/app/node_modules
+    ports:
+      - target: 4000
+        published: 4000
+        protocol: tcp
+        mode: host
+    command: npm run dev
