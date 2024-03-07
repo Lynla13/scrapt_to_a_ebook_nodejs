@@ -5,3 +5,6 @@ Allow you to turn your favourite manga/Ln/.. to a ebook (epub/pdf) (CLI)
 - Crapt a website
 - Turn it to a ebook 
 - Save in your Deviecs
+## Requirement 
+- SQLite
+- MVC
