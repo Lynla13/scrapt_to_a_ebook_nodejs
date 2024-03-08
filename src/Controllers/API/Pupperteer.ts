@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import puppeteer from "puppeteer";
 import fileSystem from "./Fs";
 import EpubGen from "./EpubGen";
+import insertBook from './../../Models/Base';
 
 
 
@@ -33,7 +34,7 @@ class Puppeteer {
 	// await page.screenshot({ path: 'screenshot.png' });
 
 	// console.log ("Secc");
-	
+	//https://geonode.com/free-proxy-list // Free proxy
  
 	// Closes the browser and all of its pages 
 	await browser.close(); 
@@ -46,6 +47,10 @@ class Puppeteer {
 		return new Promise(function(resolve) { 
 			setTimeout(resolve, time)
 		});
+	}
+
+	public static async getlost (req: Request ,res: Response) {
+		res.send (insertBook.insertBook())
 	}
 }
 

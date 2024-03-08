@@ -7,6 +7,7 @@ let router = express.Router();
 
 const Routes = (app: Application) => {
     router.get ('/pupe', Puppeteer.getContent)
+    router.get ('/r',Puppeteer.getlost )
     return app.use('/', router);
 }
 
