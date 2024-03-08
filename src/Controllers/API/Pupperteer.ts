@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import puppeteer from "puppeteer";
 import fileSystem from "./Fs";
 import EpubGen from "./EpubGen";
-import insertBook from './../../Models/Base';
+import insertBook from './../../Models/Book';
 
 
 
