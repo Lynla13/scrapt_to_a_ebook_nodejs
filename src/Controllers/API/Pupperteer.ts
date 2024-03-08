@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
 import puppeteer from "puppeteer";
+import fileSystem from "./Fs";
+import EpubGen from "./EpubGen";
+
+
 
 class Puppeteer {
    
@@ -7,7 +11,7 @@ class Puppeteer {
         // Initiate the browser 
 	const browser = await puppeteer.launch(); 
 	 
-	// Create a new page with the default browser context 
+	// Create a new page with the default browser contet 
 	const page = await browser.newPage(); 
  
 	// Go to the target website 
@@ -16,14 +20,17 @@ class Puppeteer {
 	// await page.setViewport({width: 1080, height: 1024});
 
 	// await page.screenshot({ path: 'screenshot.png' });
-	var chapters 
+	var chapters : any;
+	var title : String = 'https://docln.net/truyen/16934-danjo-no-yuujou-ha-seiritsu-suru-iya-shinai';
 	var links = await page.evaluate (() => Array.from (document.querySelectorAll('.chapter-name a'), (e:any) => e.href));
-	for (let i : number = 0 ; i < 2; i++) {
+	for (let i : number = 0 ; i < links.length; i++) {
 		await page.goto(links [i]);
-		chapters = await page.evaluate (() => Array.from (document.querySelectorAll('#chapter-content'), (e:any) => e.innerHTML));
+		chapters = await page.evaluate (() => Array.from (document.querySelectorAll('#chapter-content'), (e:any) => e.innerText));
+		console.log (chapters.toString())
+		fileSystem.appendFile('./sd.txt', chapters.toString());
+		new Promise(r => setTimeout(r, 4000))
 	}
 	// await page.screenshot({ path: 'screenshot.png' });
-	console.log (links)
 
 	// console.log ("Secc");
 	
@@ -31,12 +38,15 @@ class Puppeteer {
 	// Closes the browser and all of its pages 
 	await browser.close(); 
 
-    return res.send (chapters)
+    return res.send (links)
       
     }
 
-	// let code run in for-loop to get all content
-
+	async delay (time : number) {
+		return new Promise(function(resolve) { 
+			setTimeout(resolve, time)
+		});
+	}
 }
 
 export default Puppeteer;

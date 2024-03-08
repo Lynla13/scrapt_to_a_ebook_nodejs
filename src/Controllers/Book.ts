@@ -1,11 +1,12 @@
+//Make ebook and choose ebook maker site = here
 import * as Book from '../Data/Book'
 
 class BookController {
 
-    public static showBookList () : any {
+    public static getURL() : any {
     }
 
-    public static searchBook () : any {
+    public static epub() : any {
     }
 
     public static getBookInfo () : any {
@@ -13,7 +14,7 @@ class BookController {
     }
     
 
-    public static getEbook () : any {
+    public static image () : any {
 
     }
 }
