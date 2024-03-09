@@ -9,6 +9,11 @@ class fileSystem  {
         }));
         console.log('write file successfully');
     }   
+
+    public static readFileJSON (dir: string) {
+        var obj : JSON
+        return obj = JSON.parse(fs.readFileSync(dir, 'utf8'));
+    }
 }
 
 export default fileSystem;

@@ -1,24 +1,20 @@
 import * as db from '../Config/dbconnection';
 
-class Book {
+class ebook {
 
-    public static insertBook (table: string, param : [string]) {
-        return db.db.runQuery(
-            'INSERT INTO ebook (id,title,) VALUES (?)',
-            param)
-        
-    }
-    // public static getEbookbyId (id: String,table: String, condition: String) { 
-    //     let result = [];
-    //     let sql = `SELECT ,
-    //               LastName lastName,
-    //               Email email
-    //         FROM customers
-    //         WHERE Country = ?
-    //         ORDER BY FirstName`;
+    // public static insertEbook (id: string, chap_quantity: number, site: any, name: string) {
+    //     return db.db.run(
+    //         'INSERT INTO ebook (id, chap_quantity, site, name) VALUES (?,?,?,?)',
+    //         [id, chap_quantity, site, name])
         
     // }
+
+    public static getEbook (id: string){
+        return db.db.get (
+            'SELECT DISTINCT * FROM ebook WHERE id = ?', [id])
+    }
+
 }
 
-export default Book;
+export default ebook;
 

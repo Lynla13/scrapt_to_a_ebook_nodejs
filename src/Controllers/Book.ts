@@ -1,5 +1,5 @@
 //Make ebook and choose ebook maker site = here
-import * as Book from '../Data/Book'
+import * as Book from '../Data/Ebook'
 
 class BookController {
 
