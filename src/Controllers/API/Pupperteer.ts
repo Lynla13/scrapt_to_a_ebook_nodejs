@@ -4,17 +4,14 @@ import fileSystem from "./Fs";
 import EpubGen from "./EpubGen";
 import insertBook from './../../Models/Book';
 import proxyController from "../Proxy";
-import Docln from "./Webs/Docln";
 
 
 
 class Puppeteer {
    
-    public static async pupeteer () {
+    public static async pupeteer (link: string) {
 
 		//Buid a confif for pupeteer to use on later
-		var link: string = '12'
-
 		const browser = await puppeteer.launch();
 
 		const page = await browser.newPage(); 
