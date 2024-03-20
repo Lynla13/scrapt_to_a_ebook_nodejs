@@ -5,9 +5,10 @@ class Docln {
   
     public static async getLink (req:Request, res: Response) {
         // get Use link -> pupeteer
-        var link: string = req.body.link;
-        Puppeteer.pupeteer (link)
-
+        const link: string = req.body.link;
+        const element : string = req.body.element;
+        //const content : any = Puppeteer.getPupeteer (link,element);
+        console.log (link , element);
     }
 
     public static async saveChapter (name : string, author: string, content:string, chapter: string) {

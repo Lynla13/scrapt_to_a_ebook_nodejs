@@ -1,5 +1,5 @@
 
-class Book {
+class Ebook {
     
     id : String;
     chap_quantity : Number;
@@ -16,4 +16,4 @@ class Book {
 
 }
 
-export default Book;
+export default Ebook;
