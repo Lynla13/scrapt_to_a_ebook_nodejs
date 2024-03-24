@@ -11,7 +11,6 @@ class Ebook {
         this.name= name;
         this.chap_quantity = chap_quantity;
         this.site = site;
-
     }
 
 }
