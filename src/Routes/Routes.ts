@@ -10,6 +10,7 @@ let router = express.Router();
 const Routes = (app: Application) => {
     router.post('/docln/', Docln.getLink)  
     router.get ('/rs',proxy.getProxy)
+    router.post ('/rs',Docln.getImage)
     return app.use('/', router);
 }
 
