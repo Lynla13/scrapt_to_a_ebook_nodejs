@@ -1,10 +1,11 @@
 # SCRAPT TO EBOOK NODEJS
-Allow you to turn your favourite manga/Ln/.. to a ebook (epub/pdf) (CLI)
+Allow you to get manga,picture and turn it to ebook (CLI)
 
 ## Functions : (Build ideads)
-- Crapt a website
-- Turn it to a ebook , Image, txt file
+- Crap image from other website save it and post it
+- Turn it to Image 
 - Save in your Deviecs
+- Zerochan and e-hentai 
 ## Requirement 
 - SQLite
 - MVC

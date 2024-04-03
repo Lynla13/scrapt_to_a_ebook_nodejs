@@ -7,7 +7,7 @@ class ZeroChan{
         // get Use link -> pupeteer
         var link: string = req.body.link;
         var element : string = req.body.element;
-        Puppeteer.getPupeteer (link,element);
+        Puppeteer.getText(link,element);
 
     }
 

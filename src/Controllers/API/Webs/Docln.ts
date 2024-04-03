@@ -7,9 +7,9 @@ class Docln {
     public static async getLink (req:Request, res: Response) {
         // get Use link -> pupeteer
         const link: string = req.body.link;
-        const element : string = req.body.element;
+        const element : string = "div a";
         const content : any = await Puppeteer.getText (link,element);
-        console.log (link , element);
+        
         fileSystem.appendFile ('./text.html',JSON.stringify(content) );
 
     }

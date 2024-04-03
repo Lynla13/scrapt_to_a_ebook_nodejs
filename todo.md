@@ -2,7 +2,6 @@
 - Finish dcln and zerochan
 - Refactor code
 
-## 30/03 : 
-- Finish dcln and zerochan
-- Refactor code
-- test facebook and twitter
+## 04/03 : 
+- Finish zerochan
+- Save to sqlite
