@@ -2,6 +2,6 @@
 - Finish dcln and zerochan
 - Refactor code
 
-## 04/03 : 
-- Finish zerochan
+## 05/03 : 
+- Finish Docln
 - Save to sqlite
