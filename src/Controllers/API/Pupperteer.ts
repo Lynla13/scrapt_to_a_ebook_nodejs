@@ -5,45 +5,6 @@ const PROXY_API = process.env.PROXY_API;
 
 
 class Puppeteer {
-   
-    public static async getHTML (link: string, element : string) {
-
-		const browser = await puppeteer.launch({headless: false, args: ['--disable-features=site-per-process']});
-		//setup
-		const page = await browser.newPage(); 
-
-		await page.setViewport({ width: 1280, height: 720 });
-		// get Link And Run
-		const Proxy = `http://api.scraperapi.com?api_key=${PROXY_API}&url=${link}`
-		await page.goto(Proxy); 
-		
-		Puppeteer.delay (4000);
-		
-		Puppeteer.delay (4000);
-		const content : any = await page.$eval(`${element}`, e => e.textContent);
-		await browser.close ()
-		return content;
-    }
-
-	public static async getText (link: string, element : string) {
-
-		const browser = await puppeteer.launch({headless: false, args: ['--disable-features=site-per-process']});
-		//setup
-		const page = await browser.newPage(); 
-
-		await page.setViewport({ width: 1280, height: 720 });
-		// get Link And Run
-		const Proxy = `http://api.scraperapi.com?api_key=${PROXY_API}&url=${link}`
-		await page.goto(Proxy); 
-		
-		Puppeteer.delay (4000);
-
-
-		const content : any = await page.$eval(`${element}`, e => e.textContent);
-		await browser.close ()
-		return content;
-    }
-
 	
 	public static async getImage (link: string) {
 
@@ -66,32 +27,22 @@ class Puppeteer {
     }
 
 
-	public static async screenShot (link: string) {
-
-		const browser = await puppeteer.launch({headless: false, args: ['--disable-features=site-per-process']});
-		//setup
-		const page = await browser.newPage(); 
-
-		await page.setViewport({ width: 1280, height: 720 });
-		// get Link And Run
-		const Proxy = `http://api.scraperapi.com?api_key=${PROXY_API}&url=${link}`
-		await page.goto(Proxy); 
-		
-		Puppeteer.delay (4000);
-		await page.screenshot({
-			path: './screenshot.jpg',
-		  });
-		
-		 await browser.close ()
-		
+	
+	public static proxy (link: string) {
+		const Proxy: string = `https://api.scraperapi.com?api_key=${PROXY_API}&url=${link}`
+		return Proxy;
 	}
 
-
-	public static async delay (time : number) {
+	public static delay (time : number) {
 		return new Promise(function(resolve) { 
 			setTimeout(resolve, time)
 		});
 	}
+
+	public static replaceLink (str : string , link: string) {
+        return str.replace ('https://api.scraperapi.com',this.proxy (`${link}`));
+    }
+    
 
 }
 
