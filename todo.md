@@ -3,5 +3,9 @@
 - Refactor code
 
 ## 05/03 : 
-- Finish Docln
+- Docln
+- Save to sqlite
+
+## 05/03 : 
+- Finish Docln , chapter, truyenfull
 - Save to sqlite
