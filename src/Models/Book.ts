@@ -2,12 +2,13 @@ import * as db from '../Config/dbconnection';
 
 class ebook {
 
-    // public static insertEbook (id: string, chap_quantity: number, site: any, name: string) {
-    //     return db.db.run(
-    //         'INSERT INTO ebook (id, chap_quantity, site, name) VALUES (?,?,?,?)',
-    //         [id, chap_quantity, site, name])
+    public static insertEbook ( name : any, chap_quantity: number, author: string, sumary: any) {
+        return db.db.run(
+            //${name},${chap_quantity},${author},${page},${sumary}
+            `INSERT INTO book (name, chapter_quantity, author, sumary) VALUES (?,?,?,?)`,
+            [ name, chap_quantity, author, sumary])
         
-    // }
+    }
 
     public static getEbook (id: string){
         return db.db.get (

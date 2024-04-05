@@ -9,7 +9,7 @@ import ZeroChan from "../Controllers/API/Zerochan";
 let router = express.Router();
 
 const Routes = (app: Application) => {
-    router.post ('/rsi',Docln.getLightNovel)
+    router.post ('/rsi',Docln.getBook)
     router.post ('/get', ZeroChan.getImageBySearch)
     return app.use('/', router);
 }

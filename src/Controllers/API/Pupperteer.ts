@@ -40,7 +40,7 @@ class Puppeteer {
 	}
 
 	public static replaceLink (str : string , link: string) {
-        return str.replace ('https://api.scraperapi.com',this.proxy (`${link}`));
+        return str.replace ('https://api.scraperapi.com',link);
     }
     
 
