@@ -3,6 +3,7 @@ import Puppeteer from "../Pupperteer";
 import puppeteer, { Browser } from "puppeteer";
 import fileSystem from "../Fs";
 import Book from "../../../Models/Book"
+import Chapter from  "../../../Models/Chapter"
 const link : string = "https://docln.net";
 
 class Docln {
@@ -29,20 +30,24 @@ class Docln {
         // Get raw link
         const sample = await page.$$eval(".chapter-name a", (list) => list.map((elm) => elm.href));
         //SaveBook to database
-        Book.insertEbook (title, sample.length, author,sumary);
-        await browser.close ()
-    }
-
-    static getChapter(sample : any) {
+        Book.insertBook (title, sample.length, author,sumary);
+        //Save chapter
         const chapterLink : any = []
         for(let i=0; i < sample.length; i++) {
             chapterLink[i] = Puppeteer.replaceLink (sample[i], link);
            }
-        console.log (chapterLink)
+        for (let j = 0; j < chapterLink.length; j++) {
+            await page.goto(Puppeteer.proxy (`${chapterLink [j]}`), {waitUntil: 'networkidle2'}); 
+            const content : any = await page.$eval ("#chapter-content", (elm) => elm.textContent);
+            Chapter.insertChapter (title, j, content)
+            Puppeteer.delay (400);
+        } 
+        await browser.close ()
     }
-  
+
+
     public static saveBook ( name : any, chap_quantity: number, author: string, sumary: any) {
-       Book.insertEbook (name, chap_quantity, author, sumary);
+       Book.insertBook (name, chap_quantity, author, sumary);
     }
 
     static async toEpub (){

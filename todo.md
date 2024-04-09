@@ -6,6 +6,10 @@
 - Docln
 - Save to sqlite
 
-## 05/03 : 
-- Finish Docln , chapter, truyenfull
+## 10/03 : 
+- Finish Docln , chapter
 - Save to sqlite
+
+## 11/03 : 
+- Refactor lại cái đống code lấy truyện, chuyển nó sang pupeteer
+- Làm nốt Truyenfull
