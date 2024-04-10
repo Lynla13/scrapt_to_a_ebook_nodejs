@@ -12,4 +12,7 @@
 
 ## 11/03 : 
 - Refactor lại cái đống code lấy truyện, chuyển nó sang pupeteer
-- Làm nốt Truyenfull
+
+## 11/03 : 
+- Hoàn thiện Blogtruyen
+- Bắt đầu kết nối, API lấy ảnh
