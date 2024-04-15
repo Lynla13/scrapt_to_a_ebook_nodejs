@@ -15,6 +15,7 @@ export class db {
         }
         console.log(`Rows inserted`);
       });
+      db.close
   }
 
 
@@ -33,6 +34,7 @@ export class db {
         }
       })
     })
+    db.close
     }
     
     public static async getAll (sql: any, params:[any]) {
@@ -50,6 +52,7 @@ export class db {
               }
             })
           })
+          db.close
     }
    
 

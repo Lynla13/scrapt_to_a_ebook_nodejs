@@ -1,25 +1,21 @@
 import { Request, Response } from "express";
 import Puppeteer from "../Pupperteer";
 import fileSystem from "../Fs";
-
-const link : string = "https://docln.net";
-
+const link : string = "https://blogtruyen.vn"
 class BlogTruyen {
   //get truyen moi 
  //get truyen by tim kiem
 //Luu truyen vao sqlite de de tim 
 // Rotate về ip của mình
 
-    public static async getBook(req:Request, res: Response) {
-        const query: string = req.body.query;
-        const searchLink : string = `https://docln.net/tim-kiem?keywords=${query}%3F`;
-        const getBookLink : string = '.series-title';
-        const getTitle : string = ".series-name a";
-        const getSumary : string  = ".summary-content";
-        const getAuthor : string = ".info-value a";
-        const getChapter : string =  ".chapter-name";
-        const getChapterContent : string = "#chapter-content";
-        Puppeteer.getBook (link,searchLink,getBookLink,getTitle, getSumary, getAuthor, getChapter, getChapterContent)
+    public static async getBookByLink(req:Request, res: Response) {
+        const mangalink: string = req.body.link;
+        const getTitle : string = ".entry-title";
+        const getSumary : string  = ".content" ;
+        const getAuthor : string = ".content";
+        const getChapter : string =  "#loadChapter";
+        const getChapterContent : string = "#content";
+        Puppeteer.getBookByLinkImage (link,mangalink,getTitle, getSumary, getAuthor, getChapter, getChapterContent)
     }
 
     static async toEpub (){

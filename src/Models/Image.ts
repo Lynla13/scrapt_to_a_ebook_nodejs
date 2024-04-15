@@ -2,17 +2,14 @@ import * as db from '../Config/dbconnection';
 
 class Image {
 
-    public static insertImage (param : [string]) {
+    public static insertImage( book_id : string, image_number: string, image: string) {
         return db.db.run(
-            'INSERT INTO image (ebook_id, picture, chap_number, picture_order) VALUES (?,?,?,?,?)',
-            param)
+            //${name},${chap_quantity},${author},${page},${sumary}
+            `INSERT INTO image (book_id, image_number,image) VALUES (?,?,?)`,
+            [ book_id,image_number, image])
         
     }
 
-    public static getBook (param : [string]){
-        return db.db.get (
-            'SELECT DISTINCT * FROM image WHERE ebook_id = ? and chap_number = ?', param)
-    }
 
 }
 

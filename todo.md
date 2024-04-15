@@ -13,6 +13,9 @@
 ## 11/03 : 
 - Refactor lại cái đống code lấy truyện, chuyển nó sang pupeteer
 
-## 11/03 : 
+## 15/03 : 
 - Hoàn thiện Blogtruyen
+
+## 16/03
+- Thay thay đổi database sang mariadb
 - Bắt đầu kết nối, API lấy ảnh
