@@ -3,30 +3,12 @@ import puppeteer, { Browser } from "puppeteer";
 import Book from './../../Models/Book';
 import chapter from "../../Models/Chapter";
 import Image from "../../Models/Image";
+import Fs from "../API/Fs"
 const PROXY_API = process.env.PROXY_API; 
 
 
 class Puppeteer {
 	
-	public static async getImages (link: string) {
-
-		const browser = await puppeteer.launch({headless: false, args: ['--disable-features=site-per-process']});
-		//setup
-		const page = await browser.newPage(); 
-
-		await page.setViewport({ width: 1280, height: 720 });
-		// get Link And Run
-		const Proxy = `http://api.scraperapi.com?api_key=${PROXY_API}&url=${link}`
-		await page.goto(Proxy); 
-		
-		Puppeteer.delay (4000);
-
-		const image : any = await page.$$eval('img', images => {
-			return images.map(img => img.src);
-		  });
-		await browser.close ()
-		return image;
-    }
 
 	public static async getBook (link: string,searchLink: string, 
 		getBookLink: string, getTitle: string, getSumary: string,getAuthor: string, getChapter: string, getChapterContent: string ) {
@@ -69,10 +51,14 @@ class Puppeteer {
 		await page.setViewport({ width: 1280, height: 720 });
 		await page.goto(Puppeteer.proxy (`${mangalink}`), {waitUntil: 'networkidle2'}); 
 
-		 const title: any = await page.$eval(`${getTitle}`, (elm) => elm.textContent);
+		 let title: any = await page.$eval(`${getTitle}`, (elm) => elm.textContent);
 		 const sumary: any = await page.$eval(`${getSumary}`, (elm) => elm.textContent);
 		 const author : any = await page.$eval (`${getAuthor}`, (elm) => elm.textContent);
+		 //Get link
 		 const sample = await page.$$eval(`${getChapter} a`, (list) => list.map((elm) => elm.href));
+		 // get Name
+		 const chapterName : any =  await page.$eval (`${getChapter}`, (elm) => elm.textContent);
+		 title = title.replace(/\s+/g, ' ').trim()
 		
 		 Book.insertBook (title, sample.length, author,sumary);
 		 const chapterLink : any = []
@@ -80,15 +66,13 @@ class Puppeteer {
 			 chapterLink[i] = Puppeteer.replaceLink (sample[i], link);
 			}
 		 for (let j = 0; j < chapterLink.length; j++) {
-			console.log (chapterLink)
 			 await page.goto(Puppeteer.proxy (`${chapterLink [j]}`), {waitUntil: 'networkidle2'}); 
 				const image : any = await page.$$eval(`${getChapterContent} img`, images => {
 					return images.map(img => img.src);
 				});
-			for (let k = 0; k < image.length; k++) { 
-				Image.insertImage (title,`${j}_${k}`, image [k]) 
-				Puppeteer.delay (3000);
-			 }
+			 let chapterNumber = chapterLink [j].slice(chapterLink [j].lastIndexOf('-') + 1
+			); // "buzz"
+			 Image.insertImage (title,chapterNumber , JSON.stringify(image)) 
 			 Puppeteer.delay (4000);
 		 } 
 		 await browser.close ()
