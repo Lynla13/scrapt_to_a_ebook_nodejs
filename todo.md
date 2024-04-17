@@ -16,6 +16,6 @@
 ## 15/03 : 
 - Hoàn thiện Blogtruyen
 
-## 16/03
+## 17/03
 - Thay thay đổi database sang mariadb
 - Bắt đầu kết nối, API lấy ảnh
